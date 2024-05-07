@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products-table</title>
+     <!-- Bootstrap CSS -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<style>
+    .product-img{
+         max-width:100px;
+         height: auto;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+    }
+</style>
+<body>
+    <div class="container mt-5">
+        <h2>Products Table</h2>
+        <div class="table-responsive">
+
+        <table  class="table table-striped ">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Price</th>
+                    <th>Description</th>
+                    <th>Category</th>
+                    <th>Image</th>
+                </tr>
+            </thead>
+            <tbody id="productTableBody">
+                  <!-- Product data will be added here -->
+            </tbody>
+        </table>
+        </div>
+    </div>
+     
+    <script>
+        
+
+        fetch('https://fakestoreapi.com/products')
+
+        .then((response)=>response.json())
+
+        .then( data =>{
+
+            const productTableBody = document.getElementById("productTableBody")
+
+            data.forEach(product =>{
+
+                const row = document.createElement("tr")
+                row.innerHTML = `
+                <td>${product.id}</td>
+                <td>${product.title}</td>
+                <td>${product.price}</td>
+                <td>${product.description}</td>
+                <td>${product.category}</td>
+                <td> <img src ="${product.image}" alt="${product.title}" class="product-img img-fluid"  </td>`;
+                
+                productTableBody.appendChild(row)
+            })
+        })
+        .catch((err)=>{console.log("error in fetching data",err)})
+    </script>
+</body>
+</html>
