@@ -31,6 +31,8 @@
                     <th>Description</th>
                     <th>Category</th>
                     <th>Image</th>
+                    <th>Rate</th>
+                    <th>Count</th>
                 </tr>
             </thead>
             <tbody id="productTableBody">
@@ -60,7 +62,9 @@
                 <td>${product.price}</td>
                 <td>${product.description}</td>
                 <td>${product.category}</td>
-                <td> <img src ="${product.image}" alt="${product.title}" class="product-img img-fluid"  </td>`;
+                <td><img src ="${product.image}" alt="${product.title}" class="product-img img-fluid"  </td>
+                <td>${product.rating.rate}</td>
+                <td>${product.rating.count}</td>`;
                 
                 productTableBody.appendChild(row)
             })
